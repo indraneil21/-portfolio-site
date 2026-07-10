@@ -447,3 +447,247 @@ html {
     scroll-behavior: smooth;
     /* Add smooth scrolling */
 }
+
+/* Work Page (PDF viewer) Styles */
+.work-page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Same nav position as every other page; only the space *below* the nav
+   is trimmed so the PDF stays large. */
+.work-page nav {
+    padding-bottom: clamp(1.5rem, 3vw, 6rem);
+}
+
+.viewer {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    column-gap: clamp(0.4rem, 0.6vw, 1rem);
+    row-gap: 0.25rem;
+    padding: 0 clamp(0.75rem, 1.5vw, 3rem) clamp(0.5rem, 0.8vw, 1.25rem);
+    min-height: 0;
+    background-color: var(--background-color);
+}
+
+/* Fullscreen: the page fills the screen, controls float on top */
+.viewer:fullscreen {
+    position: relative;
+    display: block;
+    padding: 0;
+}
+
+.viewer:fullscreen .viewer-stage {
+    width: 100%;
+    height: 100%;
+}
+
+.viewer:fullscreen .viewer-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    padding: 1rem;
+}
+
+.viewer:fullscreen .viewer-arrow:hover:not(:disabled) {
+    transform: translateY(calc(-50% - 6px));
+}
+
+.viewer:fullscreen #prev-page {
+    left: clamp(0.5rem, 1.5vw, 2rem);
+}
+
+.viewer:fullscreen #next-page {
+    right: clamp(0.5rem, 1.5vw, 2rem);
+}
+
+.viewer:fullscreen .viewer-counter {
+    position: absolute;
+    bottom: clamp(0.75rem, 1.5vw, 2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.viewer:fullscreen .viewer-fullscreen {
+    position: absolute;
+    bottom: clamp(0.75rem, 1.5vw, 2rem);
+    right: clamp(0.75rem, 2vw, 2.5rem);
+    z-index: 2;
+}
+
+.viewer-stage {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 0;
+    min-width: 0;
+}
+
+.viewer-stage canvas {
+    background-color: white;
+    box-shadow: 0 12px 40px rgba(51, 51, 51, 0.15);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.viewer-arrow {
+    grid-row: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: clamp(1.5rem, 2.5vw, 6rem);
+    font-weight: 200;
+    padding: 1rem 0.25rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.viewer-arrow:hover:not(:disabled) {
+    transform: translateY(-6px);
+}
+
+.viewer-arrow:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.viewer-status {
+    font-size: clamp(1.25rem, 2vw, 4.8rem);
+    font-weight: 200;
+    text-align: center;
+}
+
+.viewer-counter {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: center;
+    font-size: clamp(0.9rem, 1vw, 2rem);
+    font-weight: 200;
+}
+
+.viewer-fullscreen {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: clamp(0.9rem, 1vw, 2rem);
+    font-weight: 200;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.viewer-fullscreen:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.password-form[hidden] {
+    display: none;
+}
+
+.password-form p {
+    font-size: clamp(1.25rem, 2vw, 4.8rem);
+    font-weight: 200;
+}
+
+.password-form input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    font-family: inherit;
+    font-size: clamp(1.1rem, 1.25vw, 2.5rem);
+    font-weight: 200;
+    color: var(--text-color);
+    text-align: center;
+    padding: 0.5rem 1rem;
+    outline: none;
+    width: min(60vw, 320px);
+}
+
+.password-form input:focus {
+    border-bottom-color: var(--accent-color);
+}
+
+.password-form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: clamp(1.1rem, 1.5vw, 3rem);
+    font-weight: 200;
+}
+
+.password-form button:hover {
+    color: var(--accent-color);
+}
+
+.password-error {
+    color: var(--accent-color);
+}
+
+.password-form .password-error {
+    font-size: clamp(0.9rem, 1vw, 2rem);
+}
+
+@media (max-width: 768px) {
+    .viewer {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        padding: 0 1.5rem 2rem;
+        gap: 0.5rem;
+    }
+
+    .viewer-stage {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .viewer-arrow {
+        grid-row: 2;
+        font-size: 2rem;
+    }
+
+    .viewer-arrow#prev-page {
+        grid-column: 1;
+        justify-self: start;
+    }
+
+    .viewer-arrow#next-page {
+        grid-column: 2;
+        justify-self: end;
+    }
+
+    .viewer-counter {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        align-self: center;
+    }
+
+    .viewer-fullscreen {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        justify-self: center;
+        padding: 0.5rem;
+    }
+}

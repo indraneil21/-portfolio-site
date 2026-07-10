@@ -1,0 +1,8 @@
+# Never publish the unencrypted portfolio — the site serves the
+# password-protected portfolio.pdf instead.
+_private/
+
+.DS_Store
+
+# Local agent tooling notes
+.claude/

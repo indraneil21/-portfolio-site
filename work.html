@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work - Indraneil</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="logo-continuity.js" defer></script>
+</head>
+
+<body class="work-page">
+    <nav>
+        <div class="logo">
+            <a href="index.html">
+                <div class="circle"></div>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="about.html">about</a>
+        </div>
+    </nav>
+
+    <main class="viewer">
+        <button class="viewer-arrow" id="prev-page" aria-label="Previous page" disabled>←</button>
+
+        <div class="viewer-stage" id="viewer-stage">
+            <p class="viewer-status" id="viewer-status">Loading…</p>
+            <form class="password-form" id="password-form" hidden>
+                <p>This portfolio is password protected.</p>
+                <input type="password" id="password-input" placeholder="password" autocomplete="off">
+                <button type="submit">unlock →</button>
+                <p class="password-error" id="password-error" hidden>Incorrect password — try again.</p>
+            </form>
+            <canvas id="pdf-canvas" hidden></canvas>
+        </div>
+
+        <button class="viewer-arrow" id="next-page" aria-label="Next page" disabled>→</button>
+
+        <p class="viewer-counter" id="page-counter"></p>
+        <button class="viewer-fullscreen" id="fullscreen-btn" hidden>fullscreen</button>
+    </main>
+
+    <script type="module" src="pdf-viewer.js"></script>
+</body>
+
+</html>
