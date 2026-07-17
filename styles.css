@@ -92,21 +92,25 @@ nav {
     overflow: hidden;
 }
 
-.home-page .hero {
-    min-height: 1;
-    flex-grow: 1;
-    margin-bottom: 0;
+/* Flex column so the hero's flex-grow fills the space under the nav */
+.home-page main {
+    display: flex;
+    flex-direction: column;
 }
 
-.home-page .hero-image {
-    bottom: 1;
+.home-page .hero {
+    /* Must be 0 (not the default calc) so nav + hero always fit in 100vh —
+       otherwise the bottom-anchored CTA gets clipped on tall displays. */
+    min-height: 0;
+    flex-grow: 1;
+    margin-bottom: 0;
 }
 
 .intro-text {
     max-width: 55%;
     position: relative;
     z-index: 2;
-    margin-bottom: 50px;
+    margin-bottom: clamp(50px, 5.5vh, 120px);
     margin-top: 50px;
 }
 
@@ -126,7 +130,8 @@ h1 {
 
 .hero-image {
     flex-shrink: 0;
-    width: clamp(360px, 52vw, 2000px);
+    /* Height-capped so the elephant stays proportionate on very tall screens */
+    width: clamp(360px, min(52vw, 88vh), 2000px);
     position: absolute;
     right: clamp(-50px, -2vw, 0px);
     bottom: clamp(-150px, -10vw, -40px);
