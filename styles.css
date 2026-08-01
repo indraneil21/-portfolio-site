@@ -134,7 +134,7 @@ h1 {
     width: clamp(360px, min(52vw, 88vh), 2000px);
     position: absolute;
     right: clamp(-50px, -2vw, 0px);
-    bottom: clamp(-150px, -10vw, -40px);
+    bottom: clamp(-60px, -3vw, 0px);
     z-index: 1;
     transition: transform 0.3s ease;
 }
